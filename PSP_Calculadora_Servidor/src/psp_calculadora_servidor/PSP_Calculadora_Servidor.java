@@ -3,80 +3,60 @@ package psp_calculadora_servidor;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.InetSocketAddress;
 import java.net.ServerSocket;
+
 import java.net.Socket;
+import javax.swing.JOptionPane;
+import static psp_calculadora_servidor.PSP_Calculadora_Servidor.*;
 
 public class PSP_Calculadora_Servidor {
 
-    public static void main(String[] args) throws IOException {
-    
-        //Creamos el socket del servidor:
-        System.out.println("Creando socket servidor");
-        ServerSocket serverSocket = new ServerSocket();
+    public static void main(String[] args) {
 
-        //Hacemos que el socket del servidor escuche en la direcion deseada
-        System.out.println("Realizando el bind");
-        InetSocketAddress addr = new InetSocketAddress("localhost", 6666);
-        serverSocket.bind(addr);
+        int port = Integer.parseInt(JOptionPane.showInputDialog("Puerto?"));
 
-        //El socket del servidor se queda escuchando en la direccion deseada.
-        //En cuenato reciba una conexion se crea el objeto Socket
-        System.out.println("Aceptando conexiones");
-        Socket newSocket = serverSocket.accept();
+        try {
+            //Creamos el socket del servidor:
+            System.out.println("Creando socket servidor");
+            ServerSocket serverSocket = new ServerSocket(port);
 
-        //Se crea un stream que recibira los datos que envie el cliente
-        InputStream is = newSocket.getInputStream();
-        OutputStream os = newSocket.getOutputStream();
-        System.out.println("Conexión recibida");
+            // El servidor está operativo hasta que cambie el valor del boolean:
+            while (true) {
+                //El socket del servidor se queda escuchando en la direccion deseada.
+                //En cuanto reciba una conexion se crea el objeto Socket
+                System.out.println("Aceptando conexiones");
+                Socket newSocket = serverSocket.accept();
 
-        // Se lee el mensaje recibido:
-        byte[] mensajeRecibido = new byte[50];
-        is.read(mensajeRecibido);
-//        System.out.println(mensajeRecibido);
-        System.out.println("Mensaje recibido: " + new String(mensajeRecibido));
-
-        // Se forma un array de strings para manejar los datos individualmente:
-        String[] cadena = new String(mensajeRecibido).split(" ");
-        int resultado = 0;
-
-        switch (cadena[1]) {
-            // Si el elemento encontrado es +:
-            case "+":
-                resultado = sumar(Integer.parseInt(cadena[0]), Integer.parseInt(cadena[2]));
-                break;
-            // Si el elemento encontrado es -:
-            case "-":
-                resultado = restar(Integer.valueOf(cadena[0]), Integer.valueOf(cadena[2]));
-                break;
-            // Si el elemento encontrado es *:
-            case "*":
-                resultado = multiplicar(Integer.valueOf(cadena[0]), Integer.valueOf(cadena[2]));
-                break;
-            // Si el elemento encontrado es /:
-            case "/":
-                resultado = dividir(Integer.valueOf(cadena[0]), Integer.valueOf(cadena[2]));
-                break;
-            // Si el elemento encontrado es ^2:
-            case "^2":
-                resultado = raizCuadrada(Integer.valueOf(cadena[0]));
-                break;
+                // Se crea un Thread:
+                new Cliente(newSocket).start();
+            }
+        } catch (IOException ex) {
+            System.out.println("Error al recibir conexiones");
         }
+    }
+}
 
-        // Se trata el resultado y se envía al cliente:
-        System.out.println("Enviando mensaje: " + resultado);
-        String mensajeEnviado = String.valueOf(resultado);
-        os.write(mensajeEnviado.getBytes());
-        System.out.println("Mensaje enviado");
+/**
+ * Hilo para cada cliente del servidor.
+ */
+class Cliente extends Thread {
 
-        // Se cierra el nuevo socket:
-        System.out.println("Cerrando el nuevo socket");
-        newSocket.close();
-        // Se cierra el socket Servidor:
-        System.out.println("Cerrando el socket servidor");
-        serverSocket.close();
+    private Socket socket;
+    private InputStream is;
+    private OutputStream os;
 
-        System.out.println("Terminado");
+    /**
+     * Recibimos el socket de conexión con el cliente y abrimos las conexiones
+     * de entrada y salida.
+     *
+     * @param socket socket de conexión con el cliente
+     * @throws IOException
+     */
+    public Cliente(Socket socket) throws IOException {
+        this.socket = socket;
+        is = socket.getInputStream();
+        os = socket.getOutputStream();
+        System.out.println("Conexión recibida");
     }
 
     /**
@@ -86,7 +66,7 @@ public class PSP_Calculadora_Servidor {
      * @param num2 El segundo número que será sumado.
      * @return El resultado de la operación.
      */
-    public static int sumar(int num1, int num2) {
+    public static double sumar(double num1, double num2) {
         System.out.println("Sumando: " + num1 + " + " + num2);
         return num1 + num2;
     }
@@ -98,7 +78,7 @@ public class PSP_Calculadora_Servidor {
      * @param num2 El segundo número que será restado.
      * @return El resultado de la operación.
      */
-    public static int restar(int num1, int num2) {
+    public static double restar(double num1, double num2) {
         System.out.println("Restando: " + num1 + " - " + num2);
         return num1 - num2;
     }
@@ -110,7 +90,7 @@ public class PSP_Calculadora_Servidor {
      * @param num2 El segundo número que será multiplicado.
      * @return El resultado de la operación.
      */
-    public static int multiplicar(int num1, int num2) {
+    public static double multiplicar(double num1, double num2) {
         System.out.println("Multiplicando: " + num1 + " * " + num2);
         return num1 * num2;
     }
@@ -122,21 +102,74 @@ public class PSP_Calculadora_Servidor {
      * @param num2 El segundo número que será dividido.
      * @return El resultado de la operación.
      */
-    public static int dividir(int num1, int num2) {
+    public static double dividir(double num1, double num2) {
         System.out.println("Dividiendo: " + num1 + " / " + num2);
         return num1 / num2;
     }
-    
+
     /**
      * Operación que hace la raiz cuadrada de un número:
      *
      * @param num1 El primer número que será operado.
      * @return El resultado de la operación.
      */
-    public static int raizCuadrada(int num1) {
-        System.out.println("Raiz cuadrada: " + num1 + "^2");
-        return num1 * num1;
+    public static double raizCuadrada(double num1) {
+        System.out.println("Raiz cuadrada: " + num1 + "√");
+        double numRaiz = num1;
+        return Math.sqrt(numRaiz);
     }
-    }
-    
 
+    @Override
+    public void run() {
+        try {
+            // Se lee el mensaje recibido:
+            byte[] mensajeRecibido = new byte[25];
+            is.read(mensajeRecibido);
+            System.out.println("Mensaje recibido: " + new String(mensajeRecibido));
+
+            // Se forma un array de strings para manejar los datos individualmente:
+            String[] cadena = new String(mensajeRecibido).split(" ");
+            double resultado = 0;
+            if (cadena[0].equalsIgnoreCase("Off")) {
+                socket.close();
+            } else {
+                switch (cadena[1]) {
+                    // Si el elemento encontrado es +:
+                    case "+":
+                        resultado = sumar(Double.valueOf(cadena[0]), Double.valueOf(cadena[2]));
+                        break;
+                    // Si el elemento encontrado es -:
+                    case "-":
+                        resultado = restar(Double.valueOf(cadena[0]), Double.valueOf(cadena[2]));
+                        break;
+                    // Si el elemento encontrado es *:
+                    case "*":
+                        resultado = multiplicar(Double.valueOf(cadena[0]), Double.valueOf(cadena[2]));
+                        break;
+                    // Si el elemento encontrado es /:
+                    case "/":
+                        resultado = dividir(Double.valueOf(cadena[0]), Double.valueOf(cadena[2]));
+                        break;
+                    // Si el elemento encontrado es ^2:
+                    case "√":
+                        resultado = raizCuadrada(Double.valueOf(cadena[0]));
+                        break;
+                }
+            }
+            // Se trata el resultado y se envía al cliente:
+            System.out.println("Enviando mensaje: " + resultado);
+            String mensajeEnviado = String.valueOf(resultado);
+            os.write(mensajeEnviado.getBytes());
+            System.out.println("Mensaje enviado");
+        } catch (IOException ex) {
+            System.out.println(ex);
+        } finally {
+            try {
+                //Cerramos la conexión
+                socket.close();
+            } catch (IOException ex) {
+                System.out.println("Error al cerrar la conexión");
+            }
+        }
+    }
+}
