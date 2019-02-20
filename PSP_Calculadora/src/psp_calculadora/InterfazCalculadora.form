@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.JTextField" name="jTextField1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jTextField1"/>
+      </Properties>
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -33,7 +40,7 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="botonComa" max="32767" attributes="0"/>
+                          <Component id="botonC" max="32767" attributes="0"/>
                           <Component id="boton2" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -67,13 +74,17 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="botonDiv" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="textoResultado" min="-2" pref="98" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="BotonServerON" min="-2" max="-2" attributes="0"/>
-                          </Group>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="textoResultado" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="port" min="-2" pref="80" max="-2" attributes="0"/>
+                          <Component id="botonEncender" min="-2" max="-2" attributes="0"/>
+                          <Component id="botonLimpiar" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -89,12 +100,17 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="labelCalculadora" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="7" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="textoResultado" min="-2" pref="36" max="-2" attributes="0"/>
-                  <Component id="BotonServerON" min="-2" pref="13" max="-2" attributes="0"/>
+                  <Component id="botonEncender" min="-2" pref="13" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="textoResultado" alignment="3" min="-2" pref="53" max="-2" attributes="0"/>
+                      <Component id="port" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="botonLimpiar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="31" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="boton7" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="boton8" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -118,7 +134,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="boton0" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="botonComa" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="botonC" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="botonIgual" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="botonSum" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -138,6 +154,9 @@
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textoResultadoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="boton1">
       <Properties>
@@ -219,12 +238,12 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="boton0MouseClicked"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="botonComa">
+    <Component class="javax.swing.JButton" name="botonC">
       <Properties>
-        <Property name="text" type="java.lang.String" value="."/>
+        <Property name="text" type="java.lang.String" value="C"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonComaMouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonCMouseClicked"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botonIgual">
@@ -267,12 +286,23 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonDivMouseClicked"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="BotonServerON">
+    <Component class="javax.swing.JButton" name="botonEncender">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Server ON"/>
+        <Property name="text" type="java.lang.String" value="Encender"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="BotonServerONMouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonEncenderMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonEncenderActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="port">
+    </Component>
+    <Component class="javax.swing.JButton" name="botonLimpiar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Limpiar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonLimpiarMouseClicked"/>
       </Events>
     </Component>
   </SubComponents>

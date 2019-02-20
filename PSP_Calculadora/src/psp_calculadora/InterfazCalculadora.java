@@ -36,6 +36,7 @@ public class InterfazCalculadora extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField1 = new javax.swing.JTextField();
         labelCalculadora = new javax.swing.JLabel();
         textoResultado = new javax.swing.JTextField();
         boton1 = new javax.swing.JButton();
@@ -48,13 +49,17 @@ public class InterfazCalculadora extends javax.swing.JFrame {
         boton8 = new javax.swing.JButton();
         boton9 = new javax.swing.JButton();
         boton0 = new javax.swing.JButton();
-        botonComa = new javax.swing.JButton();
+        botonC = new javax.swing.JButton();
         botonIgual = new javax.swing.JButton();
         botonSum = new javax.swing.JButton();
         botonRes = new javax.swing.JButton();
         botonMul = new javax.swing.JButton();
         botonDiv = new javax.swing.JButton();
-        BotonServerON = new javax.swing.JButton();
+        botonEncender = new javax.swing.JButton();
+        port = new javax.swing.JTextField();
+        botonLimpiar = new javax.swing.JButton();
+
+        jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,6 +67,11 @@ public class InterfazCalculadora extends javax.swing.JFrame {
         labelCalculadora.setText("Calculadora");
 
         textoResultado.setEditable(false);
+        textoResultado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoResultadoActionPerformed(evt);
+            }
+        });
 
         boton1.setText("1");
         boton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -133,10 +143,10 @@ public class InterfazCalculadora extends javax.swing.JFrame {
             }
         });
 
-        botonComa.setText(".");
-        botonComa.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonC.setText("C");
+        botonC.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonComaMouseClicked(evt);
+                botonCMouseClicked(evt);
             }
         });
 
@@ -175,10 +185,22 @@ public class InterfazCalculadora extends javax.swing.JFrame {
             }
         });
 
-        BotonServerON.setText("Server ON");
-        BotonServerON.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonEncender.setText("Encender");
+        botonEncender.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BotonServerONMouseClicked(evt);
+                botonEncenderMouseClicked(evt);
+            }
+        });
+        botonEncender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEncenderActionPerformed(evt);
+            }
+        });
+
+        botonLimpiar.setText("Limpiar");
+        botonLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonLimpiarMouseClicked(evt);
             }
         });
 
@@ -195,7 +217,7 @@ public class InterfazCalculadora extends javax.swing.JFrame {
                             .addComponent(boton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(botonComa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(boton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -222,12 +244,15 @@ public class InterfazCalculadora extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(boton9)
                                 .addGap(18, 18, 18)
-                                .addComponent(botonDiv))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(textoResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(BotonServerON)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(botonDiv)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(textoResultado)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(port, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonEncender)
+                            .addComponent(botonLimpiar))))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(84, 84, 84)
@@ -238,11 +263,15 @@ public class InterfazCalculadora extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(labelCalculadora)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textoResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotonServerON, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(botonEncender, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(textoResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(port, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botonLimpiar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boton7)
                     .addComponent(boton8)
@@ -263,7 +292,7 @@ public class InterfazCalculadora extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boton0)
-                    .addComponent(botonComa)
+                    .addComponent(botonC)
                     .addComponent(botonIgual)
                     .addComponent(botonSum))
                 .addGap(19, 19, 19))
@@ -274,80 +303,78 @@ public class InterfazCalculadora extends javax.swing.JFrame {
 
     private void boton0MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton0MouseClicked
         // Añade el numero al text, recojo el numero y se lo mando al servidor
-        cadena = cadena + "0";
+        cadena = cadena + 0;
         textoResultado.setText(cadena);
     }//GEN-LAST:event_boton0MouseClicked
 
     private void boton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton1MouseClicked
         // Añade el numero al text, recojo el numero y se lo mando al servidor
-        cadena = cadena + "1";
+        cadena = cadena + 1;
         textoResultado.setText(cadena);
         System.out.println(cadena);
     }//GEN-LAST:event_boton1MouseClicked
 
     private void boton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton2MouseClicked
         // Añade el numero al text, recojo el numero y se lo mando al servidor
-        cadena = cadena + "2";
+        cadena = cadena + 2;
         textoResultado.setText(cadena);
     }//GEN-LAST:event_boton2MouseClicked
 
     private void boton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton3MouseClicked
         // Añade el numero al text, recojo el numero y se lo mando al servidor
-        cadena = cadena + "3";
+        cadena = cadena + 3;
         textoResultado.setText(cadena);
     }//GEN-LAST:event_boton3MouseClicked
 
     private void boton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton4MouseClicked
         // Añade el numero al text, recojo el numero y se lo mando al servidor
-        cadena = cadena + "4";
+        cadena = cadena + 4;
         textoResultado.setText(cadena);
     }//GEN-LAST:event_boton4MouseClicked
 
     private void boton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton5MouseClicked
         // Añade el numero al text, recojo el numero y se lo mando al servidor
-        cadena = cadena + "5";
+        cadena = cadena + 5;
         textoResultado.setText(cadena);
     }//GEN-LAST:event_boton5MouseClicked
 
     private void boton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton6MouseClicked
         // Añade el numero al text, recojo el numero y se lo mando al servidor
-        cadena = cadena + "6";
+        cadena = cadena + 6;
         textoResultado.setText(cadena);
     }//GEN-LAST:event_boton6MouseClicked
 
     private void boton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton7MouseClicked
         // Añade el numero al text, recojo el numero y se lo mando al servidor
-        cadena = cadena + "7";
+        cadena = cadena + 7;
         textoResultado.setText(cadena);
     }//GEN-LAST:event_boton7MouseClicked
 
     private void boton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton8MouseClicked
         // Añade el numero al text, recojo el numero y se lo mando al servidor
-        cadena = cadena + "8";
+        cadena = cadena + 8;
         textoResultado.setText(cadena);
     }//GEN-LAST:event_boton8MouseClicked
 
     private void boton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton9MouseClicked
         // Añade el numero al text, recojo el numero y se lo mando al servidor
-        cadena = cadena + "9";
+        cadena = cadena + 9;
         textoResultado.setText(cadena);
     }//GEN-LAST:event_boton9MouseClicked
 
-    private void botonComaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonComaMouseClicked
+    private void botonCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCMouseClicked
         // Añade el numero al text, recojo el numero y se lo mando al servidor
-        cadena = cadena + ",";
+        cadena = " ";
         textoResultado.setText(cadena);
-    }//GEN-LAST:event_botonComaMouseClicked
+    }//GEN-LAST:event_botonCMouseClicked
 
     private void botonIgualMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonIgualMouseClicked
-        try {
-            // Añade el simbolo al text, recojo el simbolo y se lo mando al servidor
-            // ENVIA LA CADENA AL SERVIDOR
-            System.out.println("Cadena en la Interfaz: "+cadena);
-            MC.haceralgo(cadena);
-        } catch (IOException ex) {
-            Logger.getLogger(InterfazCalculadora.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        // Añade el simbolo al text, recojo el simbolo y se lo mando al servidor
+        // ENVIA LA CADENA AL SERVIDOR
+        cadena = cadena + " ";
+        System.out.println("Cadena en la Interfaz: "+cadena);
+        MC.enviarMensaje(cadena,textoResultado);
+        //nuevaOperacion = true;
         
     }//GEN-LAST:event_botonIgualMouseClicked
 
@@ -376,10 +403,40 @@ public class InterfazCalculadora extends javax.swing.JFrame {
         textoResultado.setText(cadena);
     }//GEN-LAST:event_botonDivMouseClicked
 
-    private void BotonServerONMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonServerONMouseClicked
-        // Inicia el servidor donde se van a realizar todas las operaciones
-        
-    }//GEN-LAST:event_BotonServerONMouseClicked
+    private void botonEncenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEncenderMouseClicked
+       try {
+            MC.crearConexion(port, botonEncender, textoResultado);
+            boton0.setEnabled(true);
+            boton1.setEnabled(true);
+            boton2.setEnabled(true);
+            boton3.setEnabled(true);
+            boton4.setEnabled(true);
+            boton5.setEnabled(true);
+            boton6.setEnabled(true);
+            boton7.setEnabled(true);
+            boton8.setEnabled(true);
+            boton9.setEnabled(true);
+            botonSum.setEnabled(true);
+            botonRes.setEnabled(true);
+            botonMul.setEnabled(true);
+            botonDiv.setEnabled(true);
+            botonIgual.setEnabled(true);
+        } catch (IOException ex) {
+            Logger.getLogger(InterfazCalculadora.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_botonEncenderMouseClicked
+
+    private void botonEncenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEncenderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonEncenderActionPerformed
+
+    private void botonLimpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLimpiarMouseClicked
+        cadena = "";
+    }//GEN-LAST:event_botonLimpiarMouseClicked
+
+    private void textoResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoResultadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoResultadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -417,7 +474,6 @@ public class InterfazCalculadora extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotonServerON;
     private javax.swing.JButton boton0;
     private javax.swing.JButton boton1;
     private javax.swing.JButton boton2;
@@ -428,13 +484,17 @@ public class InterfazCalculadora extends javax.swing.JFrame {
     private javax.swing.JButton boton7;
     private javax.swing.JButton boton8;
     private javax.swing.JButton boton9;
-    private javax.swing.JButton botonComa;
+    private javax.swing.JButton botonC;
     private javax.swing.JButton botonDiv;
+    private javax.swing.JButton botonEncender;
     private javax.swing.JButton botonIgual;
+    private javax.swing.JButton botonLimpiar;
     private javax.swing.JButton botonMul;
     private javax.swing.JButton botonRes;
     private javax.swing.JButton botonSum;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel labelCalculadora;
+    private javax.swing.JTextField port;
     private javax.swing.JTextField textoResultado;
     // End of variables declaration//GEN-END:variables
 String cadena = "";
@@ -448,7 +508,7 @@ String cadena = "";
     }
 
     public InterfazCalculadora(JButton BotonServerON, JButton boton0, JButton boton1, JButton boton2, JButton boton3, JButton boton4, JButton boton5, JButton boton6, JButton boton7, JButton boton8, JButton boton9, JButton botonComa, JButton botonDiv, JButton botonIgual, JButton botonMul, JButton botonRes, JButton botonSum, JLabel labelCalculadora, JTextField textoResultado) throws HeadlessException {
-        this.BotonServerON = BotonServerON;
+        this.botonEncender = BotonServerON;
         this.boton0 = boton0;
         this.boton1 = boton1;
         this.boton2 = boton2;
@@ -459,7 +519,7 @@ String cadena = "";
         this.boton7 = boton7;
         this.boton8 = boton8;
         this.boton9 = boton9;
-        this.botonComa = botonComa;
+        this.botonC = botonComa;
         this.botonDiv = botonDiv;
         this.botonIgual = botonIgual;
         this.botonMul = botonMul;
