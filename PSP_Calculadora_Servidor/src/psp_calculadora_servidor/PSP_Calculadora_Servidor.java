@@ -115,8 +115,8 @@ class Cliente extends Thread {
      */
     public static double raizCuadrada(double num1) {
         System.out.println("Raiz cuadrada: " + num1 + "√");
-        double numRaiz = num1;
-        return Math.sqrt(numRaiz);
+
+        return Math.sqrt(num1);
     }
 
     @Override
@@ -130,9 +130,7 @@ class Cliente extends Thread {
             // Se forma un array de strings para manejar los datos individualmente:
             String[] cadena = new String(mensajeRecibido).split(" ");
             double resultado = 0;
-            if (cadena[0].equalsIgnoreCase("Off")) {
-                socket.close();
-            } else {
+            
                 switch (cadena[1]) {
                     // Si el elemento encontrado es +:
                     case "+":
@@ -151,11 +149,11 @@ class Cliente extends Thread {
                         resultado = dividir(Double.valueOf(cadena[0]), Double.valueOf(cadena[2]));
                         break;
                     // Si el elemento encontrado es ^2:
-                    case "√":
+                    case ".":
                         resultado = raizCuadrada(Double.valueOf(cadena[0]));
                         break;
                 }
-            }
+            
             // Se trata el resultado y se envía al cliente:
             System.out.println("Enviando mensaje: " + resultado);
             String mensajeEnviado = String.valueOf(resultado);
