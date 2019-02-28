@@ -51,7 +51,7 @@ public class MetodosCliente {
     }
 
     /**
-     * Método que envía un mensaje al servidor.
+     * Método que envía el mensaje al servidor.
      *
      * @param mensaje El mensaje que envía el cliente.
      * @param resultado Donde se mostrará el resultado de la operación.
@@ -59,16 +59,25 @@ public class MetodosCliente {
     public void enviarMensaje(String mensaje, JTextField resultado) {
         String result = "0";
         try {
+            //Conectamos
             connect();
+            //Creamos outputStream para escribir el mensaje
             OutputStream os = clienteSocket.getOutputStream();
+            //Escribimos el mensaje
             os.write(mensaje.getBytes());
             System.out.println("Mensaje enviado.");
 
+            //Creamos un inputStream para recibir el mensaje
             InputStream is = clienteSocket.getInputStream();
+            //Almacenamos el mensaje recibido
             byte[] mensajeRecibido = new byte[25];
+            //Leemos el mensaje recibido
             is.read(mensajeRecibido);
+            //Parseamos el mensaje y lo mostramos en el textView de la calculadora
             resultado.setText(String.format("%.2f", Float.parseFloat(new String(mensajeRecibido))));
+            //Lo mostramos por consola
             System.out.println("Mensaje recibido: " + new String(mensajeRecibido));
+            //Cerramos el Input y Output Stream
             is.close();
             os.close();
         } catch (IOException ex) {

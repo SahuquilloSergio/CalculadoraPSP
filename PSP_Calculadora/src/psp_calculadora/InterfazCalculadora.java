@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 public class InterfazCalculadora extends javax.swing.JFrame {
 
     MetodosCliente MC = new MetodosCliente();
+
     /**
      * Creates new form InterfazCalculadora
      */
@@ -49,7 +50,7 @@ public class InterfazCalculadora extends javax.swing.JFrame {
         boton8 = new javax.swing.JButton();
         boton9 = new javax.swing.JButton();
         boton0 = new javax.swing.JButton();
-        botonC = new javax.swing.JButton();
+        botonRaiz = new javax.swing.JButton();
         botonIgual = new javax.swing.JButton();
         botonSum = new javax.swing.JButton();
         botonRes = new javax.swing.JButton();
@@ -67,11 +68,6 @@ public class InterfazCalculadora extends javax.swing.JFrame {
         labelCalculadora.setText("Calculadora");
 
         textoResultado.setEditable(false);
-        textoResultado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoResultadoActionPerformed(evt);
-            }
-        });
 
         boton1.setText("1");
         boton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -143,10 +139,10 @@ public class InterfazCalculadora extends javax.swing.JFrame {
             }
         });
 
-        botonC.setText("C");
-        botonC.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonRaiz.setText("√");
+        botonRaiz.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonCMouseClicked(evt);
+                botonRaizMouseClicked(evt);
             }
         });
 
@@ -191,11 +187,6 @@ public class InterfazCalculadora extends javax.swing.JFrame {
                 botonEncenderMouseClicked(evt);
             }
         });
-        botonEncender.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEncenderActionPerformed(evt);
-            }
-        });
 
         botonLimpiar.setText("Limpiar");
         botonLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -217,7 +208,7 @@ public class InterfazCalculadora extends javax.swing.JFrame {
                             .addComponent(boton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(botonC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonRaiz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(boton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -292,7 +283,7 @@ public class InterfazCalculadora extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boton0)
-                    .addComponent(botonC)
+                    .addComponent(botonRaiz)
                     .addComponent(botonIgual)
                     .addComponent(botonSum))
                 .addGap(19, 19, 19))
@@ -302,110 +293,111 @@ public class InterfazCalculadora extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boton0MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton0MouseClicked
-        // Añade el numero al text, recojo el numero y se lo mando al servidor
+        // Añade el numero a la cadena y lo muestro
         cadena = cadena + 0;
         textoResultado.setText(cadena);
     }//GEN-LAST:event_boton0MouseClicked
 
     private void boton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton1MouseClicked
-        // Añade el numero al text, recojo el numero y se lo mando al servidor
+        // Añade el numero a la cadena y lo muestro
         cadena = cadena + 1;
         textoResultado.setText(cadena);
         System.out.println(cadena);
     }//GEN-LAST:event_boton1MouseClicked
 
     private void boton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton2MouseClicked
-        // Añade el numero al text, recojo el numero y se lo mando al servidor
+        // Añade el numero a la cadena y lo muestro
         cadena = cadena + 2;
         textoResultado.setText(cadena);
     }//GEN-LAST:event_boton2MouseClicked
 
     private void boton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton3MouseClicked
-        // Añade el numero al text, recojo el numero y se lo mando al servidor
+        // Añade el numero a la cadena y lo muestro
         cadena = cadena + 3;
         textoResultado.setText(cadena);
     }//GEN-LAST:event_boton3MouseClicked
 
     private void boton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton4MouseClicked
-        // Añade el numero al text, recojo el numero y se lo mando al servidor
+        // Añade el numero a la cadena y lo muestro
         cadena = cadena + 4;
         textoResultado.setText(cadena);
     }//GEN-LAST:event_boton4MouseClicked
 
     private void boton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton5MouseClicked
-        // Añade el numero al text, recojo el numero y se lo mando al servidor
+        // Añade el numero a la cadena y lo muestro
         cadena = cadena + 5;
         textoResultado.setText(cadena);
     }//GEN-LAST:event_boton5MouseClicked
 
     private void boton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton6MouseClicked
-        // Añade el numero al text, recojo el numero y se lo mando al servidor
+        // Añade el numero a la cadena y lo muestro
         cadena = cadena + 6;
         textoResultado.setText(cadena);
     }//GEN-LAST:event_boton6MouseClicked
 
     private void boton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton7MouseClicked
-        // Añade el numero al text, recojo el numero y se lo mando al servidor
+        // Añade el numero a la cadena y lo muestro
         cadena = cadena + 7;
         textoResultado.setText(cadena);
     }//GEN-LAST:event_boton7MouseClicked
 
     private void boton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton8MouseClicked
-        // Añade el numero al text, recojo el numero y se lo mando al servidor
+        // Añade el numero a la cadena y lo muestro
         cadena = cadena + 8;
         textoResultado.setText(cadena);
     }//GEN-LAST:event_boton8MouseClicked
 
     private void boton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton9MouseClicked
-        // Añade el numero al text, recojo el numero y se lo mando al servidor
+        // Añade el numero a la cadena y lo muestro
         cadena = cadena + 9;
         textoResultado.setText(cadena);
     }//GEN-LAST:event_boton9MouseClicked
 
-    private void botonCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCMouseClicked
-        // Añade el numero al text, recojo el numero y se lo mando al servidor
-        cadena = " ";
-        textoResultado.setText(cadena);
-    }//GEN-LAST:event_botonCMouseClicked
+    private void botonRaizMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRaizMouseClicked
+        // Añade el simbolo a la cadena y lo muestro
+        cadena = cadena + ".";
+
+    }//GEN-LAST:event_botonRaizMouseClicked
 
     private void botonIgualMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonIgualMouseClicked
-        // Añade el simbolo al text, recojo el simbolo y se lo mando al servidor
         // ENVIA LA CADENA AL SERVIDOR
         cadena = cadena + " ";
-        System.out.println("Cadena en la Interfaz: "+cadena);
-        MC.enviarMensaje(cadena,textoResultado);
+        System.out.println("Cadena en la Interfaz: " + cadena);
+        MC.enviarMensaje(cadena, textoResultado);
         //nuevaOperacion = true;
-        
+
     }//GEN-LAST:event_botonIgualMouseClicked
 
     private void botonSumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSumMouseClicked
-        // Añade el simbolo al text, recojo el simbolo y se lo mando al servidor
+        // Añade el simbolo a la cadena y lo muestro
         cadena = cadena + " + ";
         textoResultado.setText(cadena);
         System.out.println(cadena);
     }//GEN-LAST:event_botonSumMouseClicked
 
     private void botonResMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonResMouseClicked
-        // Añade el simbolo al text, recojo el simbolo y se lo mando al servidor
+        // Añade el simbolo a la cadena y lo muestro
         cadena = cadena + " - ";
         textoResultado.setText(cadena);
     }//GEN-LAST:event_botonResMouseClicked
 
     private void botonMulMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonMulMouseClicked
-        // Añade el simbolo al text, recojo el simbolo y se lo mando al servidor
+        // Añade el simbolo a la cadena y lo muestro
         cadena = cadena + " * ";
         textoResultado.setText(cadena);
     }//GEN-LAST:event_botonMulMouseClicked
 
     private void botonDivMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonDivMouseClicked
-        // Añade el simbolo al text, recojo el simbolo y se lo mando al servidor
+        // Añade el simbolo a la cadena y lo muestro
         cadena = cadena + " / ";
         textoResultado.setText(cadena);
     }//GEN-LAST:event_botonDivMouseClicked
 
     private void botonEncenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEncenderMouseClicked
-       try {
+        try {
+            //llamamos al metodo crear conexion y le mandamos, el puerto, el boton, y el textfield
             MC.crearConexion(port, botonEncender, textoResultado);
+            //Activamos los botones y el textfield
             boton0.setEnabled(true);
             boton1.setEnabled(true);
             boton2.setEnabled(true);
@@ -421,22 +413,18 @@ public class InterfazCalculadora extends javax.swing.JFrame {
             botonMul.setEnabled(true);
             botonDiv.setEnabled(true);
             botonIgual.setEnabled(true);
+            textoResultado.setEnabled(true);
+            //Impedimos que la gente modifique manualmente el texto
+            textoResultado.setEditable(false);
         } catch (IOException ex) {
             Logger.getLogger(InterfazCalculadora.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_botonEncenderMouseClicked
 
-    private void botonEncenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEncenderActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonEncenderActionPerformed
-
     private void botonLimpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLimpiarMouseClicked
         cadena = "";
+        textoResultado.setText(cadena);
     }//GEN-LAST:event_botonLimpiarMouseClicked
-
-    private void textoResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoResultadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textoResultadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -484,12 +472,12 @@ public class InterfazCalculadora extends javax.swing.JFrame {
     private javax.swing.JButton boton7;
     private javax.swing.JButton boton8;
     private javax.swing.JButton boton9;
-    private javax.swing.JButton botonC;
     private javax.swing.JButton botonDiv;
     private javax.swing.JButton botonEncender;
     private javax.swing.JButton botonIgual;
     private javax.swing.JButton botonLimpiar;
     private javax.swing.JButton botonMul;
+    private javax.swing.JButton botonRaiz;
     private javax.swing.JButton botonRes;
     private javax.swing.JButton botonSum;
     private javax.swing.JTextField jTextField1;
@@ -519,7 +507,7 @@ String cadena = "";
         this.boton7 = boton7;
         this.boton8 = boton8;
         this.boton9 = boton9;
-        this.botonC = botonComa;
+        this.botonRaiz = botonComa;
         this.botonDiv = botonDiv;
         this.botonIgual = botonIgual;
         this.botonMul = botonMul;
@@ -528,7 +516,5 @@ String cadena = "";
         this.labelCalculadora = labelCalculadora;
         this.textoResultado = textoResultado;
     }
-
-
 
 }

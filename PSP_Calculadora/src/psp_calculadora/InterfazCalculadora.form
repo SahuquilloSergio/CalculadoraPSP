@@ -40,7 +40,7 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="botonC" max="32767" attributes="0"/>
+                          <Component id="botonRaiz" max="32767" attributes="0"/>
                           <Component id="boton2" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -134,7 +134,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="boton0" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="botonC" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="botonRaiz" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="botonIgual" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="botonSum" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -154,9 +154,6 @@
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textoResultadoActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="boton1">
       <Properties>
@@ -238,12 +235,12 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="boton0MouseClicked"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="botonC">
+    <Component class="javax.swing.JButton" name="botonRaiz">
       <Properties>
-        <Property name="text" type="java.lang.String" value="C"/>
+        <Property name="text" type="java.lang.String" value="&#x221a;"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonCMouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonRaizMouseClicked"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botonIgual">
@@ -292,7 +289,6 @@
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonEncenderMouseClicked"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonEncenderActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="port">
